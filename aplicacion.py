@@ -1,6 +1,5 @@
 import streamlit as st
 import funciones as f
-import random
 import pandas as p
 nombre_csv = f"productos_precios.csv"
 try:
@@ -11,7 +10,6 @@ except FileNotFoundError:
 def nombre_pagina():
     st.set_page_config(page_title = "Calculadora de precios")
 def cambiar_archivo():
-    open(nombre_csv, "w").close()
     df = p.DataFrame(f.para_graficos(productos_precios()))
     df.to_csv(nombre_csv, index = False)
 def cargar_productos_precios(archivo):
