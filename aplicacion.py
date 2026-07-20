@@ -15,9 +15,12 @@ def cambiar_archivo():
     df.to_csv(nombre_csv, index = False)
 def cargar_productos_precios(archivo):
     productos_precios_actual = {}
-    dt = p.read_csv(archivo)
-    for _, fila in dt.iterrows():
-        productos_precios_actual[fila["Productos"]] = fila["Precios"]
+      try:
+        dt = p.read_csv(archivo)
+        for _, fila in dt.iterrows():
+            productos_precios_actual[fila["Productos"]] = fila["Precios"]
+    except p.errors.EmptyDataError:
+        pass
     return productos_precios_actual
 def productos_precios():
     if "productos_precios" not in st.session_state:
