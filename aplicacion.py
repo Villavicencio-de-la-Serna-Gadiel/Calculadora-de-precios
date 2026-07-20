@@ -2,7 +2,7 @@ import streamlit as st
 import funciones as f
 import pandas as p
 archivo_csv = "productos_precios.csv"
-open(archivo_csv)
+open(archivo_csv).close()
 def nombre_pagina():
     st.set_page_config(page_title = "Calculadora de precios")
 def cambiar_archivo():
