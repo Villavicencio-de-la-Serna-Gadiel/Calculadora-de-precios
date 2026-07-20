@@ -15,7 +15,7 @@ def cambiar_archivo():
     df.to_csv(nombre_csv, index = False)
 def cargar_productos_precios(archivo):
     productos_precios_actual = {}
-      try:
+    try:
         dt = p.read_csv(archivo)
         for _, fila in dt.iterrows():
             productos_precios_actual[fila["Productos"]] = fila["Precios"]
