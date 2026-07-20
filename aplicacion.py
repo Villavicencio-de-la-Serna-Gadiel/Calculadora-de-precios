@@ -1,14 +1,16 @@
 import streamlit as st
 import funciones as f
 import pandas as p
-archivo_csv = "productos_precios.csv"
-open(archivo_csv, "a").close()
+nombre_csv = "productos_precios.csv"
+archivo_csv = open(nombre_csv, "r")
+cantidad_lineas = archivo_csv.readlines()
+archivo_csv.close()
 def nombre_pagina():
     st.set_page_config(page_title = "Calculadora de precios")
 def cambiar_archivo():
-    open(archivo_csv, "w").close()
+    open(nombre_csv, "w").close()
     df = p.DataFrame(f.para_graficos(productos_precios()))
-    df.to_csv(archivo_csv, index = False)
+    df.to_csv(nombre_csv, index = False)
 def cargar_productos_precios(archivo):
     productos_precios_actual = {}
     dt = p.read_csv(archivo)
@@ -17,7 +19,7 @@ def cargar_productos_precios(archivo):
     return productos_precios_actual
 def productos_precios():
     if "productos_precios" not in st.session_state:
-        st.session_state.productos_precios = cargar_productos_precios(archivo_csv)
+        st.session_state.productos_precios = cargar_productos_precios(nombre_csv)
     return st.session_state.productos_precios
 def filtro_productos_precios():
     filtrado = productos_precios().copy()
