@@ -2,10 +2,11 @@ import streamlit as st
 import funciones as f
 import pandas as p
 nombre_csv = "productos_precios.csv"
-open(nombre_csv, "a").close()
-archivo_csv = open(nombre_csv, "r")
-cantidad_lineas = archivo_csv.readlines()
-archivo_csv.close()
+try:
+    with open(nombre_csv, "r") as archivo_csv:
+        cantidad_lineas = archivo_csv.readlines()
+except FileNotFoundError:
+    cantidad_lineas = []
 def nombre_pagina():
     st.set_page_config(page_title = "Calculadora de precios")
 def cambiar_archivo():
