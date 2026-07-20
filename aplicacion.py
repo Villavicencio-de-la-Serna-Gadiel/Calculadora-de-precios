@@ -1,7 +1,8 @@
 import streamlit as st
 import funciones as f
+import random
 import pandas as p
-nombre_csv = "productos_precios.csv"
+nombre_csv = f"productos_precios{random.shuffle(list(range(1, 10)))}.csv"
 try:
     with open(nombre_csv, "r") as archivo_csv:
         cantidad_lineas = archivo_csv.readlines()
