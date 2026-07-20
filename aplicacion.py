@@ -64,7 +64,10 @@ def sidebar():
             eliminar = st.button("Eliminar productos")
             if eliminar:
                 productos_precios().clear()
-                open(archivo_csv, "w").close()
+                try:
+                    open(nombre_csv, "w").close()
+                except FileNotFoundError:
+                    pass
     def filtros():
         with st.expander("Filtros"):
             with st.form("Configurar filtro"):
