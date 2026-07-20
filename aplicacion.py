@@ -2,9 +2,12 @@ import streamlit as st
 import funciones as f
 import random
 import pandas as p
-lista = list(range(1, 10))
-random.shuffle(lista)
-nombre_csv = f"productos_precios{lista}.csv"
+def lista():
+    if "lista" not in st.session_state:
+        st.session_state.lista = list(range(1, 10))
+        random.shuffle(st.session_state.lista)
+    return st.session_state.lista
+nombre_csv = f"productos_precios{lista()}.csv"
 try:
     with open(nombre_csv, "r") as archivo_csv:
         cantidad_lineas = archivo_csv.readlines()
